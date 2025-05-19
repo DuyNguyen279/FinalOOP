@@ -196,11 +196,13 @@ public class ImportForm extends javax.swing.JInternalFrame {
         jLabel7.setText("NSX:");
 
         createdDay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        createdDay.setToolTipText("YYYY-MM-DD");
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setText("HSD:");
 
         ExpiredDay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        ExpiredDay.setToolTipText("YYYY-MM-DD");
 
         OkBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         OkBtn.setText("OK");
@@ -237,17 +239,15 @@ public class ImportForm extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nameItem, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
+                    .addComponent(nameItem, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(createdDay, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
-                        .addGap(1, 1, 1))
+                    .addComponent(createdDay, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ExpiredDay))
+                    .addComponent(ExpiredDay, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addComponent(OkBtn)
                 .addGap(31, 31, 31))
@@ -841,6 +841,11 @@ public class ImportForm extends javax.swing.JInternalFrame {
   
             x.setNSX(Date.valueOf(createdDay.getText().toString()));
             x.setHSD(Date.valueOf(ExpiredDay.getText().toString()));
+
+            if (x.getNSX().after(x.getHSD())){
+                JOptionPane.showMessageDialog(null, "Ngày sản xuất không được lớn hơn ngày hết hạn", "Cảnh Báo", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             
             sp.add(x);
             new SanPhamDAO().getInstance().insert(x);
