@@ -459,6 +459,7 @@ public class ImportForm extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm Kiếm"));
 
         searchBox.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
+        searchBox.setToolTipText("Nhập tên sản phẩm để tìm kiếm");
         searchBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBoxActionPerformed(evt);
@@ -911,7 +912,7 @@ public class ImportForm extends javax.swing.JInternalFrame {
         }
         double price;
         do {
-            price = Double.valueOf(JOptionPane.showInputDialog(null,"Vui lòng nhập số lượng sản phẩm","Sửa số lượng sản phẩm",JOptionPane.OK_OPTION));
+            price = Double.valueOf(JOptionPane.showInputDialog(null,"Vui lòng nhập giá nhập sản phẩm","Sửa số lượng sản phẩm",JOptionPane.OK_OPTION));
             if (price < 0) {
                 JOptionPane.showMessageDialog(null, "Vui lòng nhập giá nhập lớn hơn 0", "Cảnh Báo", JOptionPane.WARNING_MESSAGE);
             }

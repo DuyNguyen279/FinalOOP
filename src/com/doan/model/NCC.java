@@ -14,6 +14,7 @@ public class NCC {
     private String DiaChi;
     private String SDT;
     private String Email;
+    private boolean is_delete = false;
 
     public NCC(String maNCC, String tenNCC, String diaChi, String sDT, String email) {
         MaNCC = maNCC;
@@ -55,6 +56,14 @@ public class NCC {
     }
     public void setEmail(String email) {
         Email = email;
+    }
+
+    public boolean isIs_delete() {
+        return is_delete;
+    }
+
+    public void setIs_delete(boolean is_delete) {
+        this.is_delete = is_delete;
     }
     
 }

@@ -61,6 +61,7 @@ public class BillForm extends javax.swing.JInternalFrame {
         
         List<HoaDon> bill = new HoaDonDAO().getInstance().selectAll();
         loadTableBill(bill);
+
     }
 
     /**
@@ -121,7 +122,6 @@ public class BillForm extends javax.swing.JInternalFrame {
         BillTable = new javax.swing.JTable();
         jToolBar1 = new javax.swing.JToolBar();
         AddBillBtn = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
         btnDetail = new javax.swing.JButton();
 
         addnewBill.setBackground(new java.awt.Color(255, 255, 255));
@@ -145,7 +145,7 @@ public class BillForm extends javax.swing.JInternalFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1097, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,6 +242,7 @@ public class BillForm extends javax.swing.JInternalFrame {
         });
 
         FieldSearch.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        FieldSearch.setToolTipText("Nhập tên sản phẩm để tìm kiếm");
         FieldSearch.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm Kiếm"));
         FieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -630,19 +631,6 @@ public class BillForm extends javax.swing.JInternalFrame {
         });
         jToolBar1.add(AddBillBtn);
 
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/doan/icon/delete.png"))); // NOI18N
-        btnDelete.setText("Xoá");
-        btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnDelete.setFocusable(false);
-        btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(btnDelete);
-
         btnDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/doan/icon/view.png"))); // NOI18N
         btnDetail.setText("Xem chi tiết");
         btnDetail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -706,24 +694,6 @@ public class BillForm extends javax.swing.JInternalFrame {
         addnewBill.setLocationRelativeTo(null);
         addnewBill.setVisible(true);
     }//GEN-LAST:event_AddBillBtnActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        int i_row = BillTable.getSelectedRow();
-        if (i_row == -1){
-            JOptionPane.showMessageDialog(null,"Vui lòng chọn hóa đơn","Cảnh Báo",JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        int result = JOptionPane.showConfirmDialog(null,"Bạn có chắc chắn muốn xóa hóa đơn này không?","Xác Nhận",JOptionPane.YES_NO_OPTION);
-        if (result == JOptionPane.YES_OPTION){
-            String id = BillTable.getValueAt(i_row, 0).toString();
-            new delete().getInstance().deleteBillById(id);
-            JOptionPane.showMessageDialog(null,"Xóa thành công","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
-            model.removeRow(i_row);
-            return;
-        }
-        
-    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
         // TODO add your handling code here:
@@ -985,7 +955,6 @@ public class BillForm extends javax.swing.JInternalFrame {
     private javax.swing.JTable Item_in_Bill;
     private javax.swing.JButton add_new_item_Btn;
     private javax.swing.JDialog addnewBill;
-    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDetail;
     private com.toedter.calendar.JDateChooser dateChooser;
     private javax.swing.JButton deleteItemFormBilBtn;

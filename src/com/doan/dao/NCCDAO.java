@@ -93,7 +93,10 @@ public class NCCDAO implements DaoInterface<NCC>{
                 String diaChi = rs.getString("DiaChi");
                 String sDT = rs.getString("SDT");
                 String email = rs.getString("Email");
-                list.add(new NCC(maNCC, tenNCC, diaChi, sDT, email));
+                boolean isDelete = rs.getBoolean("is_delete");
+                NCC ncc = new NCC(maNCC, tenNCC, diaChi, sDT, email);
+                ncc.setIs_delete(isDelete);
+                list.add(ncc);
             }
             JDBCUtil.closeConnection(conn);
         } catch (Exception e) {
@@ -118,7 +121,9 @@ public class NCCDAO implements DaoInterface<NCC>{
                 String diaChi = rs.getString("DiaChi");
                 String sDT = rs.getString("SDT");
                 String email = rs.getString("Email");
+                boolean isDelete = rs.getBoolean("is_delete");
                 ncc = new NCC(maNCC, tenNCC, diaChi, sDT, email);
+                ncc.setIs_delete(isDelete);
             }
             JDBCUtil.closeConnection(conn);
         } catch (Exception e) {
@@ -142,7 +147,9 @@ public class NCCDAO implements DaoInterface<NCC>{
                 String diaChi = rs.getString("DiaChi");
                 String sDT = rs.getString("SDT");
                 String email = rs.getString("Email");
+                boolean isDelete = rs.getBoolean("is_delete");
                 ncc = new NCC(maNCC, tenNCC1, diaChi, sDT, email);
+                ncc.setIs_delete(isDelete);
             }
             JDBCUtil.closeConnection(conn);
         } catch (Exception e) {
@@ -187,7 +194,9 @@ public class NCCDAO implements DaoInterface<NCC>{
                 String diaChi = rs.getString("DiaChi");
                 String sDT = rs.getString("SDT");
                 String email = rs.getString("Email");
+                boolean isDelete = rs.getBoolean("is_delete");
                 ncc = new NCC(maNCC, tenNCC, diaChi, sDT, email);
+                ncc.setIs_delete(isDelete);
             }
             JDBCUtil.closeConnection(conn);
         } catch (Exception e) {
@@ -211,7 +220,9 @@ public class NCCDAO implements DaoInterface<NCC>{
                 String diaChi = rs.getString("DiaChi");
                 String sDT = rs.getString("SDT");
                 String email1 = rs.getString("Email");
+                boolean isDelete = rs.getBoolean("is_delete");
                 ncc = new NCC(maNCC, tenNCC, diaChi, sDT, email1);
+                ncc.setIs_delete(isDelete);
             }
             JDBCUtil.closeConnection(conn);
         } catch (Exception e) {
@@ -219,5 +230,21 @@ public class NCCDAO implements DaoInterface<NCC>{
             e.printStackTrace();
         }
         return ncc;
+    }
+
+    public int softdelete(NCC t) {
+        int ketQua = 0;
+        Connection conn = JDBCUtil.getJDBCConnection();
+        try {
+            String sql = "UPDATE nhacungcap SET is_delete = 1 WHERE MaNCC = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, t.getMaNCC());
+            ketQua = ps.executeUpdate();
+            JDBCUtil.closeConnection(conn);
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        return ketQua;
     }
 }

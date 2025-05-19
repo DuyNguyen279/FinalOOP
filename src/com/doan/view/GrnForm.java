@@ -94,7 +94,6 @@ public class GrnForm extends javax.swing.JInternalFrame {
         day1 = new com.toedter.calendar.JDateChooser();
         day2 = new com.toedter.calendar.JDateChooser();
         jToolBar1 = new javax.swing.JToolBar();
-        btnDelete = new javax.swing.JButton();
         btnDetail = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -326,19 +325,6 @@ public class GrnForm extends javax.swing.JInternalFrame {
         jToolBar1.setBorder(javax.swing.BorderFactory.createTitledBorder("Chỉnh Sửa"));
         jToolBar1.setRollover(true);
 
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/doan/icon/delete.png"))); // NOI18N
-        btnDelete.setText("Xoá");
-        btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnDelete.setFocusable(false);
-        btnDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(btnDelete);
-
         btnDetail.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/doan/icon/view.png"))); // NOI18N
         btnDetail.setText("Xem chi tiết");
         btnDetail.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -425,22 +411,6 @@ public class GrnForm extends javax.swing.JInternalFrame {
         day2.setDate(null);
     }//GEN-LAST:event_refreshBtnActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        int i_row = grnTable.getSelectedRow();
-        if (i_row == -1) {
-            JOptionPane.showMessageDialog(null, "Vui lòng chọn phiếu cần xóa", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        String id = grnTable.getValueAt(i_row, 0).toString();
-        int result = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa phiếu nhập này không?", "Xác nhận", JOptionPane.YES_NO_OPTION);
-        if (result == JOptionPane.YES_OPTION) {
-            new delete().getInstance().deleteGrnById(id);
-            model.removeRow(i_row);
-            JOptionPane.showMessageDialog(null, "Xóa thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
     private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
         // TODO add your handling code here:
         int i_row = grnTable.getSelectedRow();
@@ -489,7 +459,7 @@ public class GrnForm extends javax.swing.JInternalFrame {
         java.sql.Date sqlToDate = new java.sql.Date(toDate.getTime());
         ArrayList<PhieuNhap> list = new search().getInstance().searchGrn(sqlFromDate, sqlToDate);
         if (list.isEmpty()){
-            JOptionPane.showMessageDialog(null, "Không tìm thấy phiếu nhaps nào trong ngày nay", "Cảnh Báo", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Không tìm thấy phiếu nhập nào trong ngày nay", "Cảnh Báo", JOptionPane.WARNING_MESSAGE);
             return;
         }
         model.setRowCount(0);
@@ -506,7 +476,6 @@ public class GrnForm extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog DetailGrn;
     private javax.swing.JPanel background;
-    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDetail;
     private com.toedter.calendar.JDateChooser day1;
     private com.toedter.calendar.JDateChooser day2;

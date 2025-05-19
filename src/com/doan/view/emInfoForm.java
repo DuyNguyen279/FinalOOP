@@ -1054,7 +1054,7 @@ public class emInfoForm extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Xóa nhân viên thành công");
             setTableData(new NhanVienDAO().getInstance().selectAll());
         }
-        model.removeRow(i_row);
+        
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
@@ -1195,6 +1195,14 @@ public class emInfoForm extends javax.swing.JInternalFrame {
         double salaryEmployee = Double.parseDouble(editSalaryEmployee.getText());
         String emailEmployee = editEmailEmployee.getText();
 
+
+        // moi cap nhat
+        if (nameEmployee.equals("") ||  addressEmployee.equals("") || phoneEmployee.equals("") || emailEmployee.equals("")){
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
+            return;
+        }
+        //
+        
         new edit().editEmployee(idEmployee, nameEmployee, ageEmployee, genderEmployee, addressEmployee, phoneEmployee, salaryEmployee, emailEmployee);
         JOptionPane.showMessageDialog(null, "Chỉnh sửa nhân viên thành công");
         editEmployee.setVisible(false);
@@ -1226,12 +1234,14 @@ public class emInfoForm extends javax.swing.JInternalFrame {
             if (e.getGioiTinh()){
                 gt = "Nam";
             } else gt = "Nữ";
-            model.addRow(new Object[]{
-                e.getMaNV(),
-                e.getTenNV(),
-                e.getTuoi(),
-                gt
-            });
+            if (!e.isIs_delete()){
+                model.addRow(new Object[]{
+                    e.getMaNV(),
+                    e.getTenNV(),
+                    e.getTuoi(),
+                    gt
+                });
+            }   
         }
     }
 

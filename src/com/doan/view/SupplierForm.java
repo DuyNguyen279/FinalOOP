@@ -589,6 +589,10 @@ public class SupplierForm extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null,"Vui lòng chọn nhà cung cấp","Cảnh báo",JOptionPane.WARNING_MESSAGE);
             return;
         }
+        int confirm = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn muốn xóa nhà cung cấp này không?","Cảnh báo",JOptionPane.YES_NO_OPTION);
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
         String id = SupplierTable.getValueAt(i_row, 0).toString();
         new delete().getInstance().deleteSupplierById(id);
         JOptionPane.showMessageDialog(null,"Xóa nhà cung cấp thành công","Thông báo",JOptionPane.INFORMATION_MESSAGE);
@@ -659,6 +663,9 @@ public class SupplierForm extends javax.swing.JInternalFrame {
         if (!list.isEmpty()) {
             model.setRowCount(0);
             for (NCC ncc : list) {
+                if (ncc.isIs_delete()) {
+                    continue;
+                }
                 model.addRow(new Object[]{
                     ncc.getMaNCC(),
                     ncc.getTenNCC(),
@@ -692,6 +699,14 @@ public class SupplierForm extends javax.swing.JInternalFrame {
         String diaChi = txtAddressSupplier.getText();
         String sdt = txtNumberPhoneSupplier.getText();
         String email = txtEmailSupplier.getText();
+
+        // moi cap nhat
+        if (tenNCC.isEmpty() || diaChi.isEmpty() || sdt.isEmpty() || email.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        //
         new addNew().getInstance().addNewSupplier(maNcc, tenNCC, diaChi, sdt, email);
         JOptionPane.showMessageDialog(null, "Thêm sản phẩm thành công","Thông báo", JOptionPane.INFORMATION_MESSAGE);
         setTableData(new NCCDAO().getInstance().selectAll());
@@ -706,6 +721,14 @@ public class SupplierForm extends javax.swing.JInternalFrame {
         String diaChi = txtEditAddressSupplier.getText();
         String sdt = txtEditNumberPhoneSupplier.getText();
         String email = txtEditEmailSupplier.getText();
+
+        // moi cap nhat
+        if (tenNCC.isEmpty() || diaChi.isEmpty() || sdt.isEmpty() || email.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        //
+        
         new edit().getInstance().editSupplier(maNcc, tenNCC, diaChi, sdt, email);
         JOptionPane.showMessageDialog(null, "Cập nhật nhà cung cấp thành công","Thông báo", JOptionPane.INFORMATION_MESSAGE);
         setTableData(new NCCDAO().getInstance().selectAll());
@@ -731,13 +754,15 @@ public class SupplierForm extends javax.swing.JInternalFrame {
     public void setTableData(List<NCC> all) {
         model.setRowCount(0);
         for (NCC ncc : all) {
-            model.addRow(new Object[]{
-                ncc.getMaNCC(),
-                ncc.getTenNCC(),
-                ncc.getDiaChi(),
-                ncc.getSDT(),
-                ncc.getEmail()
-            });
+            if (!ncc.isIs_delete()) {
+                model.addRow(new Object[]{
+                    ncc.getMaNCC(),
+                    ncc.getTenNCC(),
+                    ncc.getDiaChi(),
+                    ncc.getSDT(),
+                    ncc.getEmail()
+                });
+            } 
         }
     }
 

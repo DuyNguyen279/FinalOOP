@@ -16,7 +16,7 @@ public class NhanVien {
     private String DiaChi;
     private String SDT;
     private double Luong;
-    
+    private boolean is_delete = false;
 
     public NhanVien() {
     }
@@ -85,5 +85,13 @@ public class NhanVien {
 
     public void setLuong(double luong) {
         Luong = luong;
+    }
+
+    public boolean isIs_delete() {
+        return is_delete;
+    }
+
+    public void setIs_delete(boolean is_delete) {
+        this.is_delete = is_delete;
     }
 }

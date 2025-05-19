@@ -98,8 +98,11 @@ public class NhanVienDAO implements DaoInterface<NhanVien> {
                 boolean gioiTinh = rs.getBoolean("GioiTinh");
                 String diaChi = rs.getString("DiaChi");
                 String sDT = rs.getString("SDT");
-                double luong = rs.getDouble("Luong");                
-                list.add(new NhanVien(maNV, tenNV, tuoi, gioiTinh, diaChi, sDT, luong));
+                double luong = rs.getDouble("Luong"); 
+                boolean isDelete = rs.getBoolean("is_delete"); 
+                NhanVien nv = new NhanVien(maNV, tenNV, tuoi, gioiTinh, diaChi, sDT, luong);
+                nv.setIs_delete(isDelete);              
+                list.add(nv);
             }
             JDBCUtil.closeConnection(conn);
         } catch (Exception e) {
@@ -125,8 +128,10 @@ public class NhanVienDAO implements DaoInterface<NhanVien> {
                 boolean gioiTinh = rs.getBoolean("GioiTinh");
                 String diaChi = rs.getString("DiaChi");
                 String sDT = rs.getString("SDT");
-                double luong = rs.getDouble("Luong");                
+                double luong = rs.getDouble("Luong");     
+                boolean isDelete = rs.getBoolean("is_delete");           
                 nv = new NhanVien(maNV, tenNV, tuoi, gioiTinh, diaChi, sDT, luong);
+                nv.setIs_delete(isDelete);
             }
             JDBCUtil.closeConnection(conn);
         } catch (Exception e) {
@@ -155,6 +160,22 @@ public class NhanVienDAO implements DaoInterface<NhanVien> {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public int softdelete(NhanVien t) {
+        int ketQua = 0;
+        Connection conn = JDBCUtil.getJDBCConnection();
+        try {
+            String sql = "UPDATE NhanVien SET is_delete = 1 WHERE MaNV = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, t.getMaNV());
+            ketQua = ps.executeUpdate();
+            JDBCUtil.closeConnection(conn);
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        return ketQua;
     }
 }
 

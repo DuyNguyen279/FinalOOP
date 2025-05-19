@@ -103,7 +103,10 @@ public class SanPhamDAO implements DaoInterface<SanPham>{
                 Date nsx = rs.getDate("NSX");
                 Date hsd = rs.getDate("HSD");
                 String loai = rs.getString("Loai");
-                list.add(new SanPham(maSP, tenSP, giaNY, giaNhap, soLuong, nsx, hsd, loai));
+                boolean isDelete = rs.getBoolean("is_delete");
+                SanPham sp = new SanPham(maSP, tenSP, giaNY, giaNhap, soLuong, nsx, hsd, loai);
+                sp.setIs_delete(isDelete);
+                list.add(sp);
             }
             JDBCUtil.closeConnection(conn);
         } catch (Exception e) {
@@ -131,7 +134,9 @@ public class SanPhamDAO implements DaoInterface<SanPham>{
                 Date nsx = rs.getDate("NSX");
                 Date hsd = rs.getDate("HSD");
                 String loai = rs.getString("Loai");
+                boolean isDelete = rs.getBoolean("is_delete");
                 sp = new SanPham(maSP, tenSP, giaNY, giaNhap, soLuong, nsx, hsd, loai);
+                sp.setIs_delete(isDelete);
             }
             JDBCUtil.closeConnection(conn);
         } catch (Exception e) {
@@ -159,7 +164,10 @@ public class SanPhamDAO implements DaoInterface<SanPham>{
                 Date nsx = rs.getDate("NSX");
                 Date hsd = rs.getDate("HSD");
                 String loai = rs.getString("Loai");
-                list.add(new SanPham(maSP, tenSP, giaNY, giaNhap, soLuong, nsx, hsd, loai));
+                boolean isDelete = rs.getBoolean("is_delete");
+                SanPham sp = new SanPham(maSP, tenSP, giaNY, giaNhap, soLuong, nsx, hsd, loai);
+                sp.setIs_delete(isDelete);
+                list.add(sp);
             }
             JDBCUtil.closeConnection(conn);
         } catch (Exception e) {
@@ -168,5 +176,21 @@ public class SanPhamDAO implements DaoInterface<SanPham>{
             return null;
         }
         return list;
+    }
+
+    public int softdelete(SanPham t) {
+        int ketQua = 0;
+        Connection conn = JDBCUtil.getJDBCConnection();
+        try {
+            String sql = "UPDATE SanPham SET is_delete = 1 WHERE MaSP = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, t.getMaSP());
+            ketQua = ps.executeUpdate();
+            JDBCUtil.closeConnection(conn);
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+        return ketQua;
     }
 }

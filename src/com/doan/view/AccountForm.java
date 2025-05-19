@@ -200,7 +200,11 @@ public class AccountForm extends javax.swing.JInternalFrame {
         }
         String id = listAccount.getValueAt(i_row, 0).toString();
         String newPassword = JOptionPane.showInputDialog(null, "Nhập mật khẩu mới:");
-        if (newPassword == null || newPassword.isEmpty()) {
+        if (newPassword == null) {
+            // Người dùng nhấn Cancel, không làm gì cả
+            return;
+        }
+        if (newPassword.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập mật khẩu mới", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
             return;
         }

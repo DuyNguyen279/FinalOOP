@@ -190,11 +190,13 @@ public class ItemForm extends javax.swing.JInternalFrame {
         jLabel6.setText("Ngày sản xuất");
 
         txtCreatedDate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtCreatedDate.setToolTipText("YYYY/MM/DD");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setText("Hạn sử dụng");
 
         txtExpriedDate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtExpriedDate.setToolTipText("YYYY/MM/DD");
 
         cancelBtn.setBackground(new java.awt.Color(255, 0, 0));
         cancelBtn.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -704,6 +706,7 @@ public class ItemForm extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tìm Kiếm"));
 
         FieldSearch.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        FieldSearch.setToolTipText("Nhập tên sản phẩm để tìm kiếm");
         FieldSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 FieldSearchKeyPressed(evt);
@@ -743,7 +746,7 @@ public class ItemForm extends javax.swing.JInternalFrame {
                 .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(refreshBtn)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -980,6 +983,17 @@ public class ItemForm extends javax.swing.JInternalFrame {
         Date createdDate = Date.valueOf(txtCreatedDate.getText());
         Date expiredDate = Date.valueOf(txtExpriedDate.getText());
         String type = String.valueOf(txtLoaiSanPham.getSelectedItem());
+
+        // moi cap nhat
+        if (nameItem.equals("") || createdDate.equals("") || expiredDate.equals("")){
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin sản phẩm");
+            return;
+        }
+        if (createdDate.after(expiredDate)){
+            JOptionPane.showMessageDialog(null, "Ngày sản xuất không được lớn hơn ngày hết hạn");
+            return;
+        }
+        //
         
         SanPham sp = new SanPham(id,nameItem,price,importPrice,quantity,createdDate,expiredDate,type);
         new addNew().getInstance().addNewItem(sp);
@@ -999,6 +1013,17 @@ public class ItemForm extends javax.swing.JInternalFrame {
         Date createdDate = Date.valueOf(txtUpdateCreatedDate.getText());
         Date expiredDate = Date.valueOf(txtUpdateExpiredDate.getText());
         String type = String.valueOf(txtUpdateTypeItem.getSelectedItem());
+
+        // moi cap nhat
+        if (nameItem.equals("") || createdDate.equals("") || expiredDate.equals("")){
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin sản phẩm");
+            return;
+        }
+        if (createdDate.after(expiredDate)){
+            JOptionPane.showMessageDialog(null, "Ngày sản xuất không được lớn hơn ngày hết hạn");
+            return;
+        }
+        //
         
         new edit().getInstance().editItem(id, nameItem, price, importPrice, quantity, createdDate, expiredDate, type);
         JOptionPane.showMessageDialog(null, "Chỉnh sửa sản phẩm thành công");
@@ -1018,15 +1043,19 @@ public class ItemForm extends javax.swing.JInternalFrame {
 
     private void ReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportBtnActionPerformed
         // TODO add your handling code here:
-        //right here
         int i_row = ItemTable.getSelectedRow();
         if(i_row == -1){
            JOptionPane.showMessageDialog(this,"Vui lòng chọn sản phẩm","Cảnh Báo",JOptionPane.WARNING_MESSAGE);
            return;
         }
+        int max_quantity = Integer.parseInt(ItemTable.getValueAt(i_row, 3).toString());
         BaoCao bc = new Ctr_BaoCao().getInstance().getReportInMonth();
         String id = ItemTable.getValueAt(i_row, 0).toString();
         int quantity = Integer.parseInt(JOptionPane.showInputDialog(null, "Nhập số lượng sản phẩm hư hỏng"));
+        if (quantity > max_quantity){
+            JOptionPane.showMessageDialog(null, "Số lượng sản phẩm hư hỏng không được lớn hơn số lượng sản phẩm hiện có");
+            return;
+        }
         double thiethai = Double.valueOf(ItemTable.getValueAt(i_row, 2).toString()) * Integer.valueOf(quantity);
         new Ctr_BaoCao().getInstance().addSanPhamHuHong(bc.getMaBaoCao(),id, quantity, thiethai);
         JOptionPane.showMessageDialog(null, "Thêm sản phẩm hư hỏng thành công");
@@ -1043,12 +1072,14 @@ public class ItemForm extends javax.swing.JInternalFrame {
     private void setTableData(List<SanPham> sp){
         model.setRowCount(0);
         for(SanPham x : sp){
-            model.addRow(new Object[]{
-                x.getMaSP(),
-                x.getTenSP(),
-                x.getGiaNY(),
-                x.getSoLuong()
-            });
+            if (!x.isIs_delete()){
+                model.addRow(new Object[]{
+                    x.getMaSP(),
+                    x.getTenSP(),
+                    x.getGiaNY(),
+                    x.getSoLuong()
+                });
+            } 
         }
     }
     

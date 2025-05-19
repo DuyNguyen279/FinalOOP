@@ -551,6 +551,12 @@ public class ReportForm extends javax.swing.JInternalFrame {
         damageItem(bc.getSanPhamHuHong());
         updateHotProduct();
         hotItem(bc.getSanPhamXuHuong());
+        
+        double x = 0;
+        for (int i = 0; i < model.getRowCount(); i++) {
+            x += Double.valueOf(String.valueOf(model.getValueAt(i, 3)));
+        }
+        DoanhThu.setText(String.valueOf(x - Double.parseDouble(TongThietHai.getText())));
     }//GEN-LAST:event_sreachReportBtnActionPerformed
 
     private void soldItem(List<SanPham> list) {

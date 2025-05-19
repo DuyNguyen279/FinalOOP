@@ -28,7 +28,7 @@ public class delete {
 
     public int deleteItemById(String id){
         SanPham sp = new SanPhamDAO().getInstance().selectById(id);
-        return new SanPhamDAO().getInstance().delete(sp);
+        return new SanPhamDAO().getInstance().softdelete(sp);
     }
 
     public int deleteBillById(String id){
@@ -38,7 +38,7 @@ public class delete {
 
     public int deleteSupplierById(String id){
         NCC ncc = new NCCDAO().getInstance().selectById(id);
-        return new NCCDAO().getInstance().delete(ncc);
+        return new NCCDAO().getInstance().softdelete(ncc);
     }
 
     public int deleteGrnById(String id){
@@ -48,7 +48,7 @@ public class delete {
 
     public int deleteEmployeeById(String id){
         NhanVien nv = new NhanVienDAO().getInstance().selectById(id);
-        return new NhanVienDAO().getInstance().delete(nv);
+        return new NhanVienDAO().getInstance().softdelete(nv);
     }
 
     public int deleteAccountById(String id){

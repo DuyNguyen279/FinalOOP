@@ -19,6 +19,7 @@ public class SanPham {
     private Date NSX;
     private Date HSD;
     private String Loai;
+    private boolean is_delete = false;
 
     public SanPham(String maSP, String tenSP, double giaNY, double giaNhap, int soLuong, Date nSX, Date hSD, String loai) {
         MaSP = maSP;
@@ -96,5 +97,13 @@ public class SanPham {
 
     public void setLoai(String loai) {
         Loai = loai;
+    }
+
+    public boolean isIs_delete() {
+        return is_delete;
+    }
+
+    public void setIs_delete(boolean is_delete) {
+        this.is_delete = is_delete;
     }
 }
