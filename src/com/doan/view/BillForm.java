@@ -808,9 +808,9 @@ public class BillForm extends javax.swing.JInternalFrame {
         for (int i = 0; i < model2.getRowCount(); i++) {
             if (listItem.getValueAt(i, 0).toString().equals(Item_in_Bill.getValueAt(i_row, 0).toString())) {
                 int max = Integer.valueOf(listItem.getValueAt(i,3).toString());
-                if (sl > max) {
+                if (sl > max + old_quan) {
                     JOptionPane.showMessageDialog(null, "Số lượng sản phẩm vượt qua số lượng trong kho. Hệ thống tự động sửa thành số lượng lớn nhất", "Cảnh Báo", JOptionPane.WARNING_MESSAGE);
-                    sl = max;
+                    sl = max + old_quan;
                 }
                 model2.setValueAt(max + old_quan - sl, i, 3);
             }

@@ -668,7 +668,7 @@ public class ReportForm extends javax.swing.JInternalFrame {
                 "Số lượng",
                 dataset,
                 PlotOrientation.HORIZONTAL,
-                true, true, false
+                true, true, false // chú giải, tooltip, url
         );
 
         // Tuỳ chỉnh giao diện
