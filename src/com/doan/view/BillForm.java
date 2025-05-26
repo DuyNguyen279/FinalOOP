@@ -35,30 +35,29 @@ public class BillForm extends javax.swing.JInternalFrame {
     /**
      * Creates new form BillForm
      */
-    
     DefaultTableModel model;
     DefaultTableModel model2;
     DefaultTableModel model3;
     DefaultTableModel model4;
-    
+
     public BillForm() {
         initComponents();
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         if (ui.getNorthPane() != null) {
             ui.setNorthPane(null);        // Ẩn thanh tiêu đề
         }
-        
-        model = new DefaultTableModel(){
+
+        model = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; 
+                return false;
             }
         };
-        
+
         BillTable.setModel(model);
-        String [] columns = {"Mã Hóa Đơn", "Ngày Lập", "Tổng Tiền", "Nhân Viên Lập"};
+        String[] columns = {"Mã Hóa Đơn", "Ngày Lập", "Tổng Tiền", "Nhân Viên Lập"};
         model.setColumnIdentifiers(columns);
-        
+
         List<HoaDon> bill = new HoaDonDAO().getInstance().selectAll();
         loadTableBill(bill);
 
@@ -657,17 +656,17 @@ public class BillForm extends javax.swing.JInternalFrame {
 
         txtIdBill.setText(new generateNewId().getInstance().generateNewIdBill());
 
-        model2 = new DefaultTableModel(){
+        model2 = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; 
+                return false;
             }
         };
 
-        model3 = new DefaultTableModel(){
+        model3 = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; 
+                return false;
             }
         };
 
@@ -678,20 +677,18 @@ public class BillForm extends javax.swing.JInternalFrame {
         model2.setColumnIdentifiers(columns1);
         model3.setColumnIdentifiers(columns2);
 
- 
         List<SanPham> sp = new SanPhamDAO().getInstance().selectAll();
 
-        
         for (SanPham x : sp) {
-            if (x.getSoLuong() > 0){
+            if (x.getSoLuong() > 0) {
                 model2.addRow(new Object[]{
                     x.getMaSP(),
                     x.getTenSP(),
                     x.getGiaNY(),
                     x.getSoLuong()
-                });   
+                });
             }
-            
+
         }
         addnewBill.setLocationRelativeTo(null);
         addnewBill.setVisible(true);
@@ -700,8 +697,8 @@ public class BillForm extends javax.swing.JInternalFrame {
     private void btnDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetailActionPerformed
         // TODO add your handling code here:
         int i_row = BillTable.getSelectedRow();
-        if (i_row == -1){
-            JOptionPane.showMessageDialog(null,"Vui lòng chọn hóa đơn","Cảnh Báo",JOptionPane.WARNING_MESSAGE);
+        if (i_row == -1) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn hóa đơn", "Cảnh Báo", JOptionPane.WARNING_MESSAGE);
             return;
         }
         String id = BillTable.getValueAt(i_row, 0).toString();
@@ -710,14 +707,14 @@ public class BillForm extends javax.swing.JInternalFrame {
         detailCreatedDayBill.setText(String.valueOf(hd.getNgayLap()));
         detailEmployee.setText(hd.getNVLap().getTenNV());
 
-        model4 = new DefaultTableModel(){
+        model4 = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; 
+                return false;
             }
         };
         detailItemInBill.setModel(model4);
-        String columns [] ={"Mã Sản Phẩm", "Tên Sản Phẩm", "Giá", "Số Lượng", "Thành Tiền"};
+        String columns[] = {"Mã Sản Phẩm", "Tên Sản Phẩm", "Giá", "Số Lượng", "Thành Tiền"};
         model4.setColumnIdentifiers(columns);
         model4.setRowCount(0);
 
@@ -738,20 +735,20 @@ public class BillForm extends javax.swing.JInternalFrame {
     private void add_new_item_BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_new_item_BtnActionPerformed
         // TODO add your handling code here:
         int i_row = listItem.getSelectedRow();
-        if (i_row == -1){
-            JOptionPane.showMessageDialog(null,"Vui lòng chọn sản phẩm","Cảnh Báo",JOptionPane.WARNING_MESSAGE);
+        if (i_row == -1) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn sản phẩm", "Cảnh Báo", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        int max_quantity = Integer.valueOf(listItem.getValueAt(i_row, 3).toString()); 
-        if (max_quantity == 0){
-            JOptionPane.showMessageDialog(null, "Sản phẩm đã hết hàng", "Cảnh Báo",JOptionPane.ERROR_MESSAGE);
+        int max_quantity = Integer.valueOf(listItem.getValueAt(i_row, 3).toString());
+        if (max_quantity == 0) {
+            JOptionPane.showMessageDialog(null, "Sản phẩm đã hết hàng", "Cảnh Báo", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if ((int) quantity_added_item.getValue() <= 0 ){
-            JOptionPane.showMessageDialog(null,"Vui lòng nhập số lượng","Cảnh Báo",JOptionPane.WARNING_MESSAGE);
+        if ((int) quantity_added_item.getValue() <= 0) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập số lượng", "Cảnh Báo", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        if ((int) quantity_added_item.getValue() > max_quantity){
+        if ((int) quantity_added_item.getValue() > max_quantity) {
             quantity_added_item.setValue(max_quantity);
             listItem.setValueAt(0, i_row, 3);
         }
@@ -771,12 +768,12 @@ public class BillForm extends javax.swing.JInternalFrame {
     private void deleteItemFormBilBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteItemFormBilBtnActionPerformed
         // TODO add your handling code here:
         int i_row = Item_in_Bill.getSelectedRow();
-        if (i_row == -1){
-            JOptionPane.showMessageDialog(null,"Vui lòng chọn sản phẩm","Cảnh Báo",JOptionPane.WARNING_MESSAGE);
+        if (i_row == -1) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn sản phẩm", "Cảnh Báo", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        for (int i=0; i<model2.getRowCount(); i++){
-            if (listItem.getValueAt(i, 0).toString().equals(Item_in_Bill.getValueAt(i_row, 0).toString())){
+        for (int i = 0; i < model2.getRowCount(); i++) {
+            if (listItem.getValueAt(i, 0).toString().equals(Item_in_Bill.getValueAt(i_row, 0).toString())) {
                 int max_quantity = Integer.valueOf(listItem.getValueAt(i, 3).toString());
                 model2.setValueAt(max_quantity + Integer.valueOf(Item_in_Bill.getValueAt(i_row, 3).toString()), i, 3);
                 break;
@@ -789,34 +786,33 @@ public class BillForm extends javax.swing.JInternalFrame {
     private void editQuantityItemFormBillBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editQuantityItemFormBillBtnActionPerformed
         // TODO add your handling code here:
         int i_row = Item_in_Bill.getSelectedRow();
-        if (i_row == -1){
-            JOptionPane.showMessageDialog(null,"Vui lòng chọn sản phẩm","Cảnh Báo",JOptionPane.WARNING_MESSAGE);
+        if (i_row == -1) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn sản phẩm", "Cảnh Báo", JOptionPane.WARNING_MESSAGE);
             return;
         }
         int sl;
         do {
-            sl = Integer.valueOf(JOptionPane.showInputDialog(null,"Vui lòng nhập số lượng sản phẩm","Sửa số lượng sản phẩm",JOptionPane.OK_OPTION));
+            sl = Integer.valueOf(JOptionPane.showInputDialog(null, "Vui lòng nhập số lượng sản phẩm", "Sửa số lượng sản phẩm", JOptionPane.OK_OPTION));
             if (sl < 0) {
                 JOptionPane.showMessageDialog(null, "Vui lòng nhập số lượng từ 0 trở lên", "Cảnh Báo", JOptionPane.WARNING_MESSAGE);
             }
         } while (sl < 0);
-        
 
-        if (sl == 0){
+        if (sl == 0) {
             model3.removeRow(i_row);
             autoCalculate();
             return;
         }
-        int max = Integer.valueOf(listItem.getValueAt(i_row, 3).toString());
-        if (sl > max ){
-            JOptionPane.showMessageDialog(null, "Số lượng sản phẩm vượt qua số lượng trong kho. Hệ thống tự động sửa thành số lượng lớn nhất","Cảnh Báo",JOptionPane.WARNING_MESSAGE);
-            sl = max;
-        }
+
         int old_quan = (int) Item_in_Bill.getValueAt(i_row, 3);
-        for (int i=0; i< model2.getRowCount(); i++){
-            if (listItem.getValueAt(i, 0).toString().equals(Item_in_Bill.getValueAt(i_row, 0).toString())){
-                int max_quantity = Integer.valueOf(listItem.getValueAt(i, 3).toString());
-                model2.setValueAt(max_quantity + old_quan - sl, i, 3);
+        for (int i = 0; i < model2.getRowCount(); i++) {
+            if (listItem.getValueAt(i, 0).toString().equals(Item_in_Bill.getValueAt(i_row, 0).toString())) {
+                int max = Integer.valueOf(listItem.getValueAt(i_row, 3).toString());
+                if (sl > max) {
+                    JOptionPane.showMessageDialog(null, "Số lượng sản phẩm vượt qua số lượng trong kho. Hệ thống tự động sửa thành số lượng lớn nhất", "Cảnh Báo", JOptionPane.WARNING_MESSAGE);
+                    sl = max;
+                }
+                model2.setValueAt(max + old_quan - sl, i, 3);
             }
         }
         model3.setValueAt(sl, i_row, 3);
@@ -826,15 +822,15 @@ public class BillForm extends javax.swing.JInternalFrame {
 
     private void doneBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneBtnActionPerformed
         // TODO add your handling code here:
-        if (model3.getRowCount() == 0){
-            JOptionPane.showMessageDialog(null,"Vui lòng thêm sản phẩm vào hóa đơn","Cảnh Báo",JOptionPane.WARNING_MESSAGE);
+        if (model3.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Vui lòng thêm sản phẩm vào hóa đơn", "Cảnh Báo", JOptionPane.WARNING_MESSAGE);
             return;
         }
         String maHD = txtIdBill.getText().toString();
         NhanVien nv = NhanVienDAO.getInstance().selectById(txtIdEmployee.getText());
         LocalDateTime ngayLap = LocalDateTime.now();
         List<SanPham> sp = new ArrayList<SanPham>();
-        for(int i = 0; i < Item_in_Bill.getRowCount(); i++){
+        for (int i = 0; i < Item_in_Bill.getRowCount(); i++) {
             SanPham x = SanPhamDAO.getInstance().selectById(Item_in_Bill.getValueAt(i, 0).toString());
             SanPham y = SanPhamDAO.getInstance().selectById(Item_in_Bill.getValueAt(i, 0).toString());
             if (y != null) {
@@ -853,7 +849,7 @@ public class BillForm extends javax.swing.JInternalFrame {
         addnewBill.setVisible(false);
         List<HoaDon> bill = new HoaDonDAO().getInstance().selectAll();
         model.setRowCount(0);
-        for(HoaDon billItem : bill){
+        for (HoaDon billItem : bill) {
             model.addRow(new Object[]{
                 billItem.getMaHD(),
                 billItem.getNgayLap(),
@@ -879,7 +875,7 @@ public class BillForm extends javax.swing.JInternalFrame {
         }
         java.sql.Date sqlDate = new java.sql.Date(selectedDate.getTime());
         ArrayList<HoaDon> list = new search().getInstance().searchBill(sqlDate);
-        if (list.isEmpty()){
+        if (list.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Không tìm thấy hóa đơn nào trong ngày này", "Cảnh Báo", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -888,7 +884,7 @@ public class BillForm extends javax.swing.JInternalFrame {
 
     private void FieldSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_FieldSearchKeyPressed
         // TODO add your handling code here:
-        if( evt.getKeyCode() == KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             SearchItem();
         }
     }//GEN-LAST:event_FieldSearchKeyPressed
@@ -898,22 +894,21 @@ public class BillForm extends javax.swing.JInternalFrame {
         setTableData(new SanPhamDAO().getInstance().selectAll());
     }//GEN-LAST:event_refesh2BtnActionPerformed
 
-
-    public void setIdEmployee(String id){
+    public void setIdEmployee(String id) {
         this.txtIdEmployee.setText(id);
     }
 
-    public void autoCalculate(){
+    public void autoCalculate() {
         double tongTien = 0;
-        for(int i = 0; i < model3.getRowCount(); i++){
+        for (int i = 0; i < model3.getRowCount(); i++) {
             tongTien += Double.valueOf(model3.getValueAt(i, 4).toString());
         }
         txtTotalPrice.setText(String.valueOf(tongTien));
     }
 
-    public void loadTableBill(List<HoaDon> bill){
+    public void loadTableBill(List<HoaDon> bill) {
         model.setRowCount(0);
-        for(HoaDon billItem : bill){
+        for (HoaDon billItem : bill) {
             model.addRow(new Object[]{
                 billItem.getMaHD(),
                 billItem.getNgayLap(),
@@ -922,34 +917,34 @@ public class BillForm extends javax.swing.JInternalFrame {
             });
         }
     }
-    
-    public void setTableData(ArrayList<SanPham> list){
+
+    public void setTableData(ArrayList<SanPham> list) {
         model2.setRowCount(0);
-        for (SanPham x : list){
-            if (x.getSoLuong() > 0){
+        for (SanPham x : list) {
+            if (x.getSoLuong() > 0) {
                 model2.addRow(new Object[]{
                     x.getMaSP(),
                     x.getTenSP(),
                     x.getGiaNY(),
                     x.getSoLuong()
-                });   
+                });
             }
         }
     }
-    
-    private void SearchItem(){
-        String key =FieldSearch.getText(); 
-        if (key.equals("")){
+
+    private void SearchItem() {
+        String key = FieldSearch.getText();
+        if (key.equals("")) {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập từ khóa tìm kiếm");
             return;
         }
         ArrayList<SanPham> list = new search().getInstance().searchItem(key);
-        if(list.size() == 0){
+        if (list.size() == 0) {
             JOptionPane.showMessageDialog(null, "Không tìm thấy sản phẩm");
             return;
         }
         model.setRowCount(0);
-        setTableData(list);  
+        setTableData(list);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
