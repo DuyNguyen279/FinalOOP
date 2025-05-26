@@ -111,6 +111,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         SupplierTable = new javax.swing.JTable();
 
+        addNewSupplier.setTitle("Thêm Nhà Cung Cấp Mới");
         addNewSupplier.setModal(true);
         addNewSupplier.setResizable(false);
         addNewSupplier.setSize(new java.awt.Dimension(700, 550));
@@ -267,6 +268,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
 
         addNewSupplier.getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        editSupplier.setTitle("Chỉnh Sửa Thông Tin Nhà Cung Cấp");
         editSupplier.setResizable(false);
         editSupplier.setSize(new java.awt.Dimension(700, 550));
 
@@ -708,7 +710,7 @@ public class SupplierForm extends javax.swing.JInternalFrame {
 
         //
         new addNew().getInstance().addNewSupplier(maNcc, tenNCC, diaChi, sdt, email);
-        JOptionPane.showMessageDialog(null, "Thêm sản phẩm thành công","Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Thêm nhà cung cấp thành công","Thông báo", JOptionPane.INFORMATION_MESSAGE);
         setTableData(new NCCDAO().getInstance().selectAll());
         addNewSupplier.setVisible(false);
     }//GEN-LAST:event_addBtnActionPerformed

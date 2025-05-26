@@ -157,6 +157,7 @@ public class ImportForm extends javax.swing.JInternalFrame {
         editPriceItemFormGrnBtn = new javax.swing.JButton();
         txtIdImportEmployee = new javax.swing.JLabel();
 
+        capnhat.setTitle("Cập Nhật Thông Tin Sản Phẩm");
         capnhat.setModal(true);
         capnhat.setResizable(false);
         capnhat.setSize(new java.awt.Dimension(420, 340));
@@ -485,6 +486,7 @@ public class ImportForm extends javax.swing.JInternalFrame {
         });
 
         addNewItemBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/doan/icon/plus.png"))); // NOI18N
+        addNewItemBtn.setToolTipText("Nhập Sản Phẩm Mới");
         addNewItemBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addNewItemBtnActionPerformed(evt);

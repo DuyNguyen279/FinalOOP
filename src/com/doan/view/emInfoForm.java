@@ -156,6 +156,7 @@ public class emInfoForm extends javax.swing.JInternalFrame {
         btnEdit = new javax.swing.JButton();
         btnDetail = new javax.swing.JButton();
 
+        addEmployee.setTitle("Thêm Nhân Viên Mới");
         addEmployee.setModal(true);
         addEmployee.setResizable(false);
         addEmployee.setSize(new java.awt.Dimension(1200, 800));
@@ -331,6 +332,7 @@ public class emInfoForm extends javax.swing.JInternalFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        addAccount.setTitle("Tạo Tài Khoản Cho Nhân Viên");
         addAccount.setModal(true);
         addAccount.setResizable(false);
         addAccount.setSize(new java.awt.Dimension(831, 675));
@@ -462,6 +464,7 @@ public class emInfoForm extends javax.swing.JInternalFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        editEmployee.setTitle("Chỉnh Sửa Thông Tin Nhân Viên");
         editEmployee.setModal(true);
         editEmployee.setResizable(false);
         editEmployee.setSize(new java.awt.Dimension(1200, 700));
@@ -643,6 +646,7 @@ public class emInfoForm extends javax.swing.JInternalFrame {
 
         editEmployee.getContentPane().add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        detailInfoEmployee.setTitle("Thông Tin Chi Tiết Nhân Viên");
         detailInfoEmployee.setModal(true);
         detailInfoEmployee.setResizable(false);
         detailInfoEmployee.setSize(new java.awt.Dimension(1200, 700));

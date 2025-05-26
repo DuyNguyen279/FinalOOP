@@ -154,11 +154,13 @@ public class ItemForm extends javax.swing.JInternalFrame {
         btnDetail = new javax.swing.JButton();
         ReportBtn = new javax.swing.JButton();
 
+        addItem.setTitle("Thêm Sản Phẩm Mới");
         addItem.setBackground(new java.awt.Color(255, 255, 255));
         addItem.setModal(true);
         addItem.setResizable(false);
         addItem.setSize(new java.awt.Dimension(800, 520));
 
+        jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(36, 16, 78));
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
@@ -344,15 +346,18 @@ public class ItemForm extends javax.swing.JInternalFrame {
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        updateItem.setTitle("Chỉnh Sửa Thông Tin Sản Phẩm");
         updateItem.setModal(true);
         updateItem.setResizable(false);
         updateItem.setSize(new java.awt.Dimension(800, 520));
 
+        jTextField2.setEditable(false);
         jTextField2.setBackground(new java.awt.Color(36, 16, 78));
         jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(255, 255, 255));
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField2.setText("Cập nhập thông tin sản phẩm");
+        jTextField2.setToolTipText("");
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -525,9 +530,11 @@ public class ItemForm extends javax.swing.JInternalFrame {
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        DetailItem.setTitle("Thông Tin Chi Tiết Sản Phẩm");
         DetailItem.setResizable(false);
         DetailItem.setSize(new java.awt.Dimension(800, 520));
 
+        jTextField3.setEditable(false);
         jTextField3.setBackground(new java.awt.Color(36, 16, 78));
         jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(255, 255, 255));

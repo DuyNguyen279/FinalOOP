@@ -150,6 +150,7 @@ public class ReportForm extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         DoanhThu = new javax.swing.JLabel();
 
+        DSsanphamhong.setTitle("Danh Sách Sản Phẩm Hư Hỏng");
         DSsanphamhong.setResizable(false);
         DSsanphamhong.setSize(new java.awt.Dimension(600, 600));
 
@@ -234,6 +235,7 @@ public class ReportForm extends javax.swing.JInternalFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        DSsanphambanchay.setTitle("Danh Sách Sản Phẩm Bán Chạy");
         DSsanphambanchay.setResizable(false);
         DSsanphambanchay.setSize(new java.awt.Dimension(600, 600));
 
@@ -301,6 +303,7 @@ public class ReportForm extends javax.swing.JInternalFrame {
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        chartReport.setTitle("Biểu Đồ");
         chartReport.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         chartReport.setFocusCycleRoot(false);
         chartReport.setModal(true);

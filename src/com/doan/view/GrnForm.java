@@ -99,6 +99,7 @@ public class GrnForm extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         grnTable = new javax.swing.JTable();
 
+        DetailGrn.setTitle("Chi Tiết Hóa Đơn");
         DetailGrn.setModal(true);
         DetailGrn.setResizable(false);
         DetailGrn.setSize(new java.awt.Dimension(1200, 800));

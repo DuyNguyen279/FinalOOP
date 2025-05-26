@@ -170,6 +170,9 @@ public class NhanVienDAO implements DaoInterface<NhanVien> {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, t.getMaNV());
             ketQua = ps.executeUpdate();
+            sql = "UPDATE TaiKhoan SET status = 0 WHERE MaNV = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, t.getMaNV());
             JDBCUtil.closeConnection(conn);
         } catch (Exception e) {
             // TODO: handle exception

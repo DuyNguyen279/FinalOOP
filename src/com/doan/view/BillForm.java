@@ -124,6 +124,7 @@ public class BillForm extends javax.swing.JInternalFrame {
         AddBillBtn = new javax.swing.JButton();
         btnDetail = new javax.swing.JButton();
 
+        addnewBill.setTitle("Tạo Hóa Đơn");
         addnewBill.setBackground(new java.awt.Color(255, 255, 255));
         addnewBill.setModal(true);
         addnewBill.setResizable(false);
@@ -145,7 +146,7 @@ public class BillForm extends javax.swing.JInternalFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1097, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 3, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,6 +363,7 @@ public class BillForm extends javax.swing.JInternalFrame {
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
         );
 
+        detailBill.setTitle("Thông Tin Chi Tiết Hóa Đơn");
         detailBill.setModal(true);
         detailBill.setResizable(false);
         detailBill.setSize(new java.awt.Dimension(1100, 800));
