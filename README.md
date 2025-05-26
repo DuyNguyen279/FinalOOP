@@ -24,17 +24,24 @@ Phần mềm quản lý bán hàng được xây dựng bằng ngôn ngữ Java,
 ## Cấu trúc thư mục
 
 ```
-src/
-  ├── com/doan/controller/   // Xử lý logic nghiệp vụ
-  ├── com/doan/dao/          // Truy xuất dữ liệu (DAO)
-  ├── com/doan/database/     // Kết nối, cấu hình CSDL
-  ├── com/doan/icon/         // Icon giao diện
-  ├── com/doan/model/        // Định nghĩa các lớp đối tượng
-  └── com/doan/view/         // Giao diện người dùng (Form)
-jar/
-  ├── flatlaf-3.6.jar
-  ├── mysql-connector-j-9.2.0.jar
-  └── jfreechart-1.0.19/
+FINAL_OOP/
+│
+├── src/
+│   └── com/
+│       └── doan/
+│           ├── controller/      # Xử lý logic nghiệp vụ (addNew, edit, delete, search, generateNewId, ...)
+│           ├── dao/             # Truy xuất dữ liệu (NhanVienDAO, TaiKhoanDAO, ...)
+│           ├── model/           # Định nghĩa các lớp đối tượng (NhanVien, TaiKhoan, ...)
+│           ├── database/        # FKết nối cơ sở dữ liệu, script tạo CSDL
+│           ├── icon/            # Các icon được sử dụng trong phần mềm
+│           ├── view/            # Giao diện người dùng (LoginForm.java, emInfoForm.java, ...)
+│           └── icon/            # Chứa các file hình ảnh, icon cho giao diện
+│
+├── jar/                         # Thư viện ngoài (FlatLaf, MySQL Connector/J, JFreeChart, ...)
+│
+├
+│
+├── README.md                    # Tài liệu hướng dẫn 
 ```
 
 ## Hướng dẫn cài đặt & sử dụng
