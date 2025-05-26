@@ -1190,6 +1190,10 @@ public class emInfoForm extends javax.swing.JInternalFrame {
 
     private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBtnActionPerformed
         // TODO add your handling code here:
+        if (editAgeEmployee.getText().equals("") || editSalaryEmployee.getText().equals("") || editNameEmployee.getText().equals("") || editAddressEmployee.getText().equals("") || editPhoneEmployee.getText().equals("") || editEmailEmployee.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
+            return;   
+        }
         String idEmployee = editIdEmployee.getText();
         String nameEmployee = editNameEmployee.getText();
         int ageEmployee = Integer.parseInt(editAgeEmployee.getText());
@@ -1203,6 +1207,16 @@ public class emInfoForm extends javax.swing.JInternalFrame {
         // moi cap nhat
         if (nameEmployee.equals("") ||  addressEmployee.equals("") || phoneEmployee.equals("") || emailEmployee.equals("")){
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
+            return;
+        }
+
+        if (salaryEmployee < 0) {
+            JOptionPane.showMessageDialog(null, "Lương không được nhỏ hơn 0");
+            return;
+        }
+
+        if (phoneEmployee.length() != 10 || !phoneEmployee.matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Số điện thoại phải có 10 chữ số và chỉ chứa số");
             return;
         }
         //
