@@ -1030,6 +1030,14 @@ public class ItemForm extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Ngày sản xuất không được lớn hơn ngày hết hạn");
             return;
         }
+        if (quantity < 0){
+            JOptionPane.showMessageDialog(null, "Số lượng sản phẩm không được nhỏ hơn 0");
+            return;
+        }
+        if (price < 0 || importPrice < 0){
+            JOptionPane.showMessageDialog(null, "Giá sản phẩm không được nhỏ hơn 0");
+            return;
+        }
         //
         
         new edit().getInstance().editItem(id, nameItem, price, importPrice, quantity, createdDate, expiredDate, type);
@@ -1063,6 +1071,12 @@ public class ItemForm extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Số lượng sản phẩm hư hỏng không được lớn hơn số lượng sản phẩm hiện có");
             return;
         }
+        //
+        if (quantity < 0){
+            JOptionPane.showMessageDialog(null, "Số lượng sản phẩm hư hỏng không được nhỏ hơn 0");
+            return;
+        }
+        //
         double thiethai = Double.valueOf(ItemTable.getValueAt(i_row, 2).toString()) * Integer.valueOf(quantity);
         new Ctr_BaoCao().getInstance().addSanPhamHuHong(bc.getMaBaoCao(),id, quantity, thiethai);
         JOptionPane.showMessageDialog(null, "Thêm sản phẩm hư hỏng thành công");

@@ -800,6 +800,7 @@ public class BillForm extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Vui lòng nhập số lượng từ 0 trở lên", "Cảnh Báo", JOptionPane.WARNING_MESSAGE);
             }
         } while (sl < 0);
+        
 
         if (sl == 0){
             model3.removeRow(i_row);
@@ -808,6 +809,7 @@ public class BillForm extends javax.swing.JInternalFrame {
         }
         int max = Integer.valueOf(listItem.getValueAt(i_row, 3).toString());
         if (sl > max ){
+            JOptionPane.showMessageDialog(null, "Số lượng sản phẩm vượt qua số lượng trong kho. Hệ thống tự động sửa thành số lượng lớn nhất","Cảnh Báo",JOptionPane.WARNING_MESSAGE);
             sl = max;
         }
         int old_quan = (int) Item_in_Bill.getValueAt(i_row, 3);
