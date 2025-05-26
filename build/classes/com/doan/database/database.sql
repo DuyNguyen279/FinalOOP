@@ -68,7 +68,7 @@ CREATE TABLE `hangnhap` (
 
 LOCK TABLES `hangnhap` WRITE;
 /*!40000 ALTER TABLE `hangnhap` DISABLE KEYS */;
-INSERT INTO `hangnhap` VALUES ('PN3','SP3',100,800000.00);
+INSERT INTO `hangnhap` VALUES ('PN1','SP10',1,15000.00),('PN1','SP11',1,60000.00),('PN1','SP9',4,112000.00);
 /*!40000 ALTER TABLE `hangnhap` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,7 +239,7 @@ CREATE TABLE `phieunhap` (
 
 LOCK TABLES `phieunhap` WRITE;
 /*!40000 ALTER TABLE `phieunhap` DISABLE KEYS */;
-INSERT INTO `phieunhap` VALUES ('PN2','2025-03-15',300000.00,'NV2','NCC2'),('PN3','2025-03-16',400000.00,'NV3','NCC3'),('PN4','2025-04-09',280000.00,'NV0','NCC1');
+INSERT INTO `phieunhap` VALUES ('PN1','2025-05-19',187000.00,'NV0','NCC1');
 /*!40000 ALTER TABLE `phieunhap` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,7 +270,7 @@ CREATE TABLE `sanpham` (
 
 LOCK TABLES `sanpham` WRITE;
 /*!40000 ALTER TABLE `sanpham` DISABLE KEYS */;
-INSERT INTO `sanpham` VALUES ('SP1','Sữa tươi Vinamilk 1L',32000.00,28000,66,'2025-03-01','2025-06-01','Đồ Uống',_binary '\0'),('SP3','Nước khoáng Lavie 500ml',10000.00,8000,150,'2025-03-05','2025-09-05','Đồ uống',_binary '\0'),('SP4','Táo Mỹ',20000.00,15000,24,'2025-03-15','2025-03-30','Đồ ăn',_binary '\0'),('SP5','Thịt heo sạch 500g',70000.00,60000,55,'2025-03-16','2025-03-18','Đồ ăn',_binary '\0'),('SP6','Sữa TH True Milk',20000.00,18000,147,'2025-03-01','2025-06-01','Đồ ăn',_binary '\0'),('SP7','Thịt heo sạch 1kg',120000.00,60000,79,'2025-03-25','2025-06-25','Đồ ăn',_binary '\0'),('SP8','Cơm Cháy',25000.00,20000,3,'2025-03-26','2025-03-27','Đồ ăn',_binary '\0');
+INSERT INTO `sanpham` VALUES ('SP1','Sữa tươi Vinamilk 1L',32000.00,28000,66,'2025-03-01','2025-06-01','Đồ Uống',_binary '\0'),('SP10','Táo Mỹ',20000.00,15000,1,'2025-01-01','2026-01-01','Đồ ăn',_binary '\0'),('SP11','Thịt heo sạch 1kg',120000.00,60000,1,'2025-01-01','2026-01-01','Đồ ăn',_binary '\0'),('SP3','Nước khoáng Lavie 500ml',10000.00,8000,150,'2025-03-05','2025-09-05','Đồ uống',_binary '\0'),('SP4','Táo Mỹ',20000.00,15000,24,'2025-03-15','2025-03-30','Đồ ăn',_binary '\0'),('SP5','Thịt heo sạch 500g',70000.00,60000,55,'2025-03-16','2025-03-18','Đồ ăn',_binary '\0'),('SP6','Sữa TH True Milk',20000.00,18000,147,'2025-03-01','2025-06-01','Đồ ăn',_binary '\0'),('SP7','Thịt heo sạch 1kg',120000.00,60000,79,'2025-03-25','2025-06-25','Đồ ăn',_binary '\0'),('SP8','Cơm Cháy',25000.00,20000,3,'2025-03-26','2025-03-27','Đồ ăn',_binary '\0'),('SP9','Sữa tươi Vinamilk 1L',32000.00,28000,4,'2025-01-01','2026-01-01','Đồ Uống',_binary '\0');
 /*!40000 ALTER TABLE `sanpham` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -361,7 +361,7 @@ CREATE TABLE `taikhoan` (
 
 LOCK TABLES `taikhoan` WRITE;
 /*!40000 ALTER TABLE `taikhoan` DISABLE KEYS */;
-INSERT INTO `taikhoan` VALUES ('TK0','admin','admin','admin','Admin',1,'admin@gmail.com','NV0'),('TK2','Trần Thị B','user1','pass123','Manager',1,'thibinh@yahoo.com','NV2'),('TK3','Lê Văn C','levanc','chovinh','Employee',1,'vanc@outlook.com','NV3'),('TK5','Đặng Văn E','dangvane','passxyz','Employee',0,'vane1@gmail.com','NV4');
+INSERT INTO `taikhoan` VALUES ('TK0','admin','admin','admin','Admin',1,'admin@gmail.com','NV0'),('TK1','Nguyễn Văn A','nhanvien1','123','Manager',1,'nvanh@gmail.com','NV1'),('TK2','Trần Thị B','user1','pass123','Manager',1,'thibinh@yahoo.com','NV2'),('TK3','Lê Văn C','levanc','chovinh','Employee',1,'vanc@outlook.com','NV3'),('TK4','Đặng Văn E','dangvane','passxyz','Employee',1,'vane1@gmail.com','NV4');
 /*!40000 ALTER TABLE `taikhoan` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -374,4 +374,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-19 20:00:15
+-- Dump completed on 2025-05-26 21:47:24
