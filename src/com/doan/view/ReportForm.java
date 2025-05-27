@@ -663,7 +663,7 @@ public class ReportForm extends javax.swing.JInternalFrame {
 
         // Tạo biểu đồ
         JFreeChart chart = ChartFactory.createBarChart(
-                "Báo cáo doang thu " + MonthCombo.getSelectedItem() + " năm " + YearSpinner.getValue(),
+                "Báo cáo doanh thu " + MonthCombo.getSelectedItem() + " năm " + YearSpinner.getValue(),
                 "Sản phẩm",
                 "Số lượng",
                 dataset,

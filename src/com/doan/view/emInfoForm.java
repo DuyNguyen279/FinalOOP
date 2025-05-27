@@ -1119,6 +1119,20 @@ public class emInfoForm extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
             return;
         }
+        if (!newAgeEmployee.getText().matches("\\d+") || !newSalaryEmployee.getText().matches("\\d+") || !newPhoneEmployee.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Lỗi nhập dữ liệu, vui lòng nhập lại", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            return;
+            
+        }
+        if (newPhoneEmployee.getText().length() != 10) {
+            JOptionPane.showMessageDialog(null, "Số điện thoại phải có 10 chữ số", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (Double.parseDouble(newSalaryEmployee.getText()) < 0) {
+            JOptionPane.showMessageDialog(null, "Lương không được nhỏ hơn 0", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+       
         addEmployee.setVisible(false);
         addAccount.setLocationRelativeTo(null);
         addAccount.setVisible(true);
